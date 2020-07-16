@@ -1,6 +1,24 @@
 $(function () {
 
 
+  $(document).ready(function() {
+    $('.page').mousemove(function(e) {
+      parallax(e, document.getElementById('content'), 1);
+      // parallax(e, document.getElementById('content'), 2);
+    });
+  });
+  
+  function parallax(e, target, layer) {
+    let strength = 30;
+    let layer_coeff = strength / layer;
+    let x = ($(window).width() - target.offsetWidth) / 2 - (e.pageX - ($(window).width() / 2)) / layer_coeff;
+    let y = ($(window).height() - target.offsetHeight) / 2 - (e.pageY - ($(window).height() / 2)) / layer_coeff;
+    $(target).offset({
+      top: y,
+      left: x
+    });
+  };
+
 
     let cursor = {
         delay: 8,
